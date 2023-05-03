@@ -41,7 +41,7 @@ public class Menu
                     break;
                 case "F":
                     Console.Write("Please enter your author: ");
-                    string author = Console.ReadLine() ?? String.Empty;
+                    author = Console.ReadLine() ?? String.Empty;
                     _board.FindQuotesByAuthor(author);
                     break;
                 case "R":

@@ -13,7 +13,7 @@ public class Quote
 
     public bool HasAuthor(string name)
     {
-        if(_author.ToUpper().Contains(name.ToUpper))
+        if(_author.ToUpper().Contains(name.ToUpper()))
         {
             return true;
         }
