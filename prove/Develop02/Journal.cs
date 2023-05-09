@@ -3,7 +3,7 @@ public class Journal
     List<Entry> _entries = new List<Entry>();
     Prompt _prompts = new Prompt();
     string _filename;
-
+    string _fileString;
 
     public Journal(string filename)
     {
@@ -29,9 +29,12 @@ public class Journal
     public void SaveJournal()
     {
         // saves each journal entry in _entries to the journal
-        foreach (Entry entry in _entries)
+        using (StreamWriter outputFile = new StreamWriter(@_filename, append: true))
         {
-            entry.SaveEntryToJournal(_filename);
+            foreach (Entry entry in _entries)
+            {
+                outputFile.WriteLine(entry.SaveEntryToJournal(entry));
+            }
         }
         _entries.Clear();
     }

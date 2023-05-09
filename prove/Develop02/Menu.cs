@@ -25,6 +25,7 @@ public class Menu
             Console.WriteLine("'C' Save the journal");
             Console.WriteLine("'D' Quit");
             choice = Console.ReadLine() ?? String.Empty;
+            Console.WriteLine();
             if (choice.ToUpper() == "A")
             {
                 // creates a new entry in the journal

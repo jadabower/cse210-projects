@@ -24,16 +24,10 @@ public class Entry
         return response;
     }
 
-    public void SaveEntryToJournal(string filename)
+    public string SaveEntryToJournal(Entry entry)
     {
         // saves the entry to the journal file
-        using (StreamWriter outputFile = new StreamWriter(filename))
-        {
-            outputFile.WriteLine($"{_dateAndTime} | {_location} | Prompt: {_prompt}");
-            outputFile.WriteLine(_text);
-            outputFile.WriteLine($"Emotion/Vibe of the day:");
-            outputFile.WriteLine($"{_emotion}\n");
-        }
+        return ($"{entry._dateAndTime} | {entry._location} | Prompt: {entry._prompt} \n{entry._text}\n Emotion/Vibe of the day: \n{entry._emotion}\n");
     }
 
     public void DisplayEntry()
