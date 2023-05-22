@@ -1,8 +1,7 @@
 public class Scripture
 {
     Reference _reference;
-    List<Word> _originalText = new List<Word>(); 
-    List<int> _indexOfWordsToBlankOut = new List<int>();
+    List<Word> _words = new List<Word>(); 
 
     public Scripture(Reference reference, string text)
     {
@@ -10,29 +9,30 @@ public class Scripture
         this.InitializeOriginalText(text);
     }
 
-
-    public void BlankNextRandomWords()
+    public bool HideRandomWord()
     {
-        List<int> indexesNotBlank = new List<int>();
-        for (int i = 0; i < _originalText.Count(); i++)
+        var Random = new Random();
+        while (true)
         {
-            if (!_indexOfWordsToBlankOut.Contains(i))
+            var randomIndex = Random.Next(0, (_words.Count()));
+            if ((_words[randomIndex]).CheckIfShown())
             {
-                indexesNotBlank.Add(i);
+                (_words[randomIndex]).HideWord();
+                break;
             }
         }
-        for (int i = 0; i < Math.Min(3, indexesNotBlank.Count()); i++)
-        {
-            var Random = new Random(); 
-            var randomIndexOfIndexesNotBlank = Random.Next(0, indexesNotBlank.Count());
-            _indexOfWordsToBlankOut.Add(indexesNotBlank[randomIndexOfIndexesNotBlank]);
-            indexesNotBlank.RemoveAt(randomIndexOfIndexesNotBlank);
-        }
+        return true;
     }
 
-    public bool IsWholeVerseBlank()
+    public bool CheckIfWordsRemaining()
     {
-        return _indexOfWordsToBlankOut.Count() == _originalText.Count();
+        List<bool> blankOrNot = new List<bool>();
+        foreach (Word word in _words)
+        {
+            blankOrNot.Add(word.CheckIfShown());
+        }
+        bool containsTrue = blankOrNot.Contains(true);
+        return containsTrue;
     }
 
     private void InitializeOriginalText(string text)
@@ -41,46 +41,17 @@ public class Scripture
         foreach (string substring in textString)
         {
             Word word = new Word(substring);
-            _originalText.Add(word);
+            _words.Add(word);
         }
-    }
-
-    private List<string> GenerateVariableText()
-    {
-        List<string> variableText = new List<string>();
-        for (int i = 0; i <  _originalText.Count(); i++)
-        {
-            if (_indexOfWordsToBlankOut.Contains(i))
-            {
-                variableText.Add(_originalText[i].GetBlankString());
-            }
-            else
-            {
-                variableText.Add(_originalText[i].GetString());
-            }
-        }
-        return variableText;
     }
 
     public string GetScripture()
     {
         string stringText = $"{_reference.GetReference()} ";
-        foreach (Word word in _originalText)
+        foreach (Word word in _words)
         {
-            stringText += $"{word.GetString()} ";
+            stringText += $"{word.GetWordAsString()} ";
         }
-        return stringText;
-    }
-
-    public string GetScriptureWithBlanks()
-    {
-        string stringText = $"{_reference.GetReference()} ";
-        List<string> variableText = this.GenerateVariableText();
-        foreach (string word in variableText)
-        {
-            stringText += $"{word} ";
-        }
-
         return stringText;
     }
 }

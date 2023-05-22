@@ -1,23 +1,40 @@
 public class Word
 {
     string _word;
+    bool _isShown;
 
     public Word(string word)
     {
         _word = word;
+        _isShown = true;
     }
 
-    public string GetString()
+    public string GetWordAsString()
     {
         return _word;
     }
-    public string GetBlankString()
+
+    public bool CheckIfShown()
     {
-        string underscores = "";
+        return _isShown;
+    }
+
+    public void HideWord()
+    {
+        _isShown = false;
+        string blankedWord = "";
         foreach(char letter in _word)
         {
-            underscores += "_";
+            if (Char.IsLetter(letter))
+            {
+                blankedWord += "_";
+            }
+            else
+            {
+                blankedWord += $"{letter}";
+            }
         }
-        return underscores;
+        _word = blankedWord;
+
     }
 }

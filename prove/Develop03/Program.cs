@@ -11,25 +11,24 @@ class Program
         //console cleared
         //display original scripture
         Console.WriteLine($"\nPress enter to continue or type 'quit' to finish:");
-        string choice = Console.ReadLine();
+        string choice = Console.ReadLine() ?? String.Empty;
         
         while(choice != "quit")
         {
             Console.Clear();
-            if (scripture.IsWholeVerseBlank())
+            if (!scripture.CheckIfWordsRemaining())
             {
                 break;
             }
-            scripture.BlankNextRandomWords();
-            Console.WriteLine(scripture.GetScriptureWithBlanks());
+            scripture.HideRandomWord();
+            Console.WriteLine(scripture.GetScripture());
             Console.WriteLine($"\nPress enter to continue or type 'quit' to finish:");
-            choice = Console.ReadLine();
+            choice = Console.ReadLine() ?? String.Empty;
 
-            //generate random blanks
+            //generate random blank word
             //console cleared
             //write scripture with blanks
             //ask for user input
-            
         }
     }
 }
