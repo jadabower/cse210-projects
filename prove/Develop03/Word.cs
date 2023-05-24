@@ -35,6 +35,5 @@ public class Word
             }
         }
         _word = blankedWord;
-
     }
 }
