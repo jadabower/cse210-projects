@@ -56,7 +56,7 @@ public class GoalsList
         else
         {
             string path = $@"C:\Users\jadab\Downloads\Jada personal\Programming with Classes\cse210-projects\prove\Develop05\{_filename}";
-            using (FileStream fs = File.Create(path));
+            using (FileStream fs = File.Create(path)){}
         }
     }
 
