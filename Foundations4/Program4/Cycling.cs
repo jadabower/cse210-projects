@@ -1,7 +1,6 @@
 public class Cycling:Activity
 {
     double _speed;
-
     
     public Cycling(string date, int length, double speed) : base(date, length)
     {

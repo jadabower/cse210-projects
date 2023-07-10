@@ -1,7 +1,6 @@
 public class Running:Activity
 {
     double _distance;
-    // string _type = "Running";
     
     public Running(string date, int length, double distance) : base(date, length)
     {
