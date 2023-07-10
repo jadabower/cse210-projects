@@ -11,7 +11,6 @@ public abstract class Activity
     protected abstract double GetDistance();
     protected abstract double GetSpeed();
     protected abstract double GetPace();
-    protected abstract string GetActivityType();
     public string GetSummary()
     {
         return $"{_date} {GetType()} ({_lengthInMinutes} min)- Distance {GetDistance()} miles, Speed {GetSpeed()} mph, Pace: {GetPace()} min per mile";

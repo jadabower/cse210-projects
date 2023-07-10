@@ -1,7 +1,6 @@
 public class Swimming:Activity
 {
     int _laps;
-    string _type = "Swimming";
     
     public Swimming(string date, int length, int laps) : base(date, length)
     {
@@ -18,9 +17,5 @@ public class Swimming:Activity
     protected override double GetPace()
     {
         return (_lengthInMinutes / GetDistance());
-    }
-    protected override string GetActivityType()
-    {
-        return _type;
     }
 }

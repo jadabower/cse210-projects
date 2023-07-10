@@ -1,7 +1,7 @@
 public class Running:Activity
 {
     double _distance;
-    string _type = "Running";
+    // string _type = "Running";
     
     public Running(string date, int length, double distance) : base(date, length)
     {
@@ -18,9 +18,5 @@ public class Running:Activity
     protected override double GetPace()
     {
         return (_lengthInMinutes / GetDistance());
-    }
-    protected override string GetActivityType()
-    {
-        return _type;
     }
 }
